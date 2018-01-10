@@ -1,0 +1,7 @@
+.idea/
+.next/
+.vscode/
+node_modules/
+*.log
+*.map
+*.swp
