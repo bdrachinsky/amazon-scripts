@@ -5,16 +5,23 @@ let config = require('./config');
 AWS.config.update({accessKeyId: config.accessKey, secretAccessKey: config.secretAccessKey, region: config.region});
 
 // Create the IAM service object
-var iam = new AWS.IAM({apiVersion: '2010-05-08'});
+let iam = new AWS.IAM({apiVersion: '2010-05-08'});
 
-var params = {
-  UserName: process.argv[2]
-};
+let myManagedPolicy = {
+	"Version": "2012-10-17",
+	"Statement": [{
+		"Effect": "Allow",
+		"Principal": {
+			"Service": ["ec2.amazonaws.com"]
+		},
+		"Action": ["sts:AssumeRole"]
+	}]
+}
 
-var params = {
-    AssumeRolePolicyDocument: JSON.stringify(config.myPolicy), /* required */
+let params = {
+    AssumeRolePolicyDocument: JSON.stringify(myManagedPolicy), /* required */
     RoleName: process.argv[2], /* required */
-    Description: 'STRING_VALUE',
+    Description: 'For EC2 Instance',
     Path: '/'
   };
   iam.createRole(params, function(err, data) {

@@ -17,7 +17,7 @@ iam.listAttachedUserPolicies(params, function(err, data) {
     console.log("Error", err);
     throw err;
   } else {
-    var policies = data.AttachedPolicies || [];
+    let policies = data.AttachedPolicies || [];
     policies.forEach(function(policy) {
       console.log("PolicyName " + policy.PolicyName + " PolicyArn", policy.PolicyArn);
     });

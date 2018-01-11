@@ -1,13 +1,13 @@
 let AWS = require('aws-sdk');
 let config = require('./config');
-
+let fs = require('fs');
 
 AWS.config.update({accessKeyId: config.accessKey, secretAccessKey: config.secretAccessKey, region: config.region});
 
 // Create the IAM service object
-var iam = new AWS.IAM({apiVersion: '2010-05-08'});
+let iam = new AWS.IAM({apiVersion: '2010-05-08'});
 
-var params = {
+let params = {
   UserName: process.argv[2]
 };
 
@@ -18,6 +18,10 @@ iam.getUser(params, function(err, data) {
         console.log("Error", err);
         throw err;
       } else {
+        fs.appendFile('createUser.txt', "\nUser " + JSON.stringify(data) + " created successfully", function (err) {
+          if (err) throw err;
+          console.log('Saved!');
+        });
         console.log("Success", data);
       }
     });

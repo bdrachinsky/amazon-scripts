@@ -1,4 +1,4 @@
-var http = require('http');
+let http = require('http');
 
 function onRequest(request, response) {
     console.log(request.url);

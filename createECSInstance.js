@@ -1,5 +1,6 @@
 let AWS = require('aws-sdk');
 let config = require('./config');
+let fs = require('fs');
 
 
 AWS.config.update({accessKeyId: config.accessKey, secretAccessKey: config.secretAccessKey, region: config.region});
@@ -11,7 +12,12 @@ let params = {
     ImageId: 'ami-2f99984f', // Free tier
     InstanceType: 't2.micro',
     MinCount: 1,
-    MaxCount: 1
+    MaxCount: 1,
+    IamInstanceProfile: {
+        //Arn: 'arn:aws:iam::024808532830:instance-profile/TestRole',
+        Name: 'TestRole'
+      },
+      KeyName: 'myKeys'
 };
 
 // Create the instance
@@ -20,7 +26,7 @@ ec2.runInstances(params, function(err, data) {
        console.log("Could not create instance", err);
        return;
     }
-    var instanceId = data.Instances[0].InstanceId;
+    let instanceId = data.Instances[0].InstanceId;
     console.log("Created instance", instanceId);
     // Add tags to the instance
     params = {Resources: [instanceId], Tags: [
