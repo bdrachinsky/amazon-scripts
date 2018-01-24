@@ -16,10 +16,10 @@ ec2.createKeyPair(params, function(err, data) {
     if (err) {
        console.log("Error", err);
     } else {
-        fs.writeFile(params.KeyName + '.pem', JSON.stringify(data, null, 4), function (err) {
+        fs.writeFile(params.KeyName + '.txt', JSON.stringify(data, null, 4), function (err) {
             if (err) throw err;
           });
-        fs.writeFile(params.KeyName + '.txt', data.KeyMaterial, function (err) {
+        fs.writeFile(params.KeyName + '.pem', data.KeyMaterial, function (err) {
             if (err) throw err;
           });
        console.log(JSON.stringify(data));
