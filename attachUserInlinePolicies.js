@@ -31,7 +31,19 @@ let myManagedPolicy = {
                 "ecs:ListTasks",
                 "ecs:ListContainerInstances",
                 "ecs:DescribeContainerInstances",
-                "ecr:GetAuthorizationToken"
+                "ecs:CreateCluster",
+                "ecs:DeregisterContainerInstance",
+                "ecs:DiscoverPollEndpoint",
+                "ecs:Poll",
+                "ecs:RegisterContainerInstance",
+                "ecs:StartTelemetrySession",
+                "ecs:Submit*",
+                "ecr:GetAuthorizationToken",
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
             ],
             "Resource": "*"
         }
@@ -40,7 +52,7 @@ let myManagedPolicy = {
 
 let params = {
     PolicyDocument: JSON.stringify(myManagedPolicy),
-    PolicyName: 'ShippablePolicies',
+    PolicyName: 'ShippableInlinePolicy',
     UserName: process.argv[2]
   };
   
