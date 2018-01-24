@@ -11,8 +11,10 @@ let paramsRoleList = {
     RoleName: process.argv[2]
   };
   
-  let policyName = 'ShippablePolicies';
-  let policyArn = 'arn:aws:iam::024808532830:policy/ShippablePolicies';
+  let policyName = process.argv[3];
+  let policyArn = process.argv[4];
+  // AmazonEC2ContainerServiceforEC2Role
+  // arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role
   
   iam.listAttachedRolePolicies(paramsRoleList).eachPage(function(err, data) {
     if (err) {
