@@ -15,9 +15,9 @@ iam.createAccessKey(params, function(err, data) {
     if (err) {
       throw err;
     } else {
-        // fs.appendFile('accessKeys.txt', "\n Keys " + JSON.stringify(data) + " created successfully", function (err) {
-        //     if (err) throw err;
-        //   });
+        fs.appendFile(params.UserName + 'AccessKeys.txt', "\n Keys " + JSON.stringify(data) + " created successfully", function (err) {
+            if (err) throw err;
+          });
       console.log("Success", data);
     }
   });

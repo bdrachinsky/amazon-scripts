@@ -1,5 +1,5 @@
-{
-    accessKey: 'Put here your accessKey';
-    secretAccessKey: 'Put here your secretAccessKey';
-    region: 'us-west-1';
+module.exports = {
+    accessKey: "ac",
+    secretAccessKey: "sec",
+    region: "us-west-1"
 }
